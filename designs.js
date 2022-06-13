@@ -5,6 +5,9 @@ var pixelArt = {
     draw: false,
     defaultColor: '',
     darkModeSwitch: document.querySelector('.theme-switch input[type="checkbox"]'),
+    ipHeight: document.getElementById('inputHeight'),
+    ipWidth: document.getElementById('inputWidth'),
+
 
     // Method to convert rgb color to HEX color
     rgbToHex: function (r, g, b) {
@@ -17,16 +20,16 @@ var pixelArt = {
     },
     // Set max value of width and height input boxes dynamically. Based on the browser window size,at the time of window load.
     setMaxValue: function () {
-        document.getElementById('inputHeight').setAttribute('max', Math.floor((window.innerHeight - pixelArt.canvas.offsetTop - 20) / 20));
-        document.getElementById('inputWidth').setAttribute('max', Math.floor((window.innerWidth - 20) / 20));
+        pixelArt.ipHeight.setAttribute('max', Math.floor((window.innerHeight - pixelArt.canvas.offsetTop - 20) / 20));
+        pixelArt.ipWidth.setAttribute('max', Math.floor((window.innerWidth - 20) / 20));
     },
     // Generate Grid dynamically based on input height and width.
     makeGrid: function (e) {
         pixelArt.canvas.innerHTML = "";
         pixelArt.canvas.style.opacity = 1;
         pixelArt.setBorderColor();
-        const height = parseInt(document.getElementById('inputHeight').value);
-        const width = parseInt(document.getElementById('inputWidth').value);
+        const height = parseInt(pixelArt.ipHeight.value);
+        const width = parseInt(pixelArt.ipWidth.value);
         for (let i = 1; i <= height; i++) {
             const tr = document.createElement('tr');
             for (let j = 1; j <= width; j++) {
